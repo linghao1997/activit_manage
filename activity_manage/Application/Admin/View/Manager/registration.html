@@ -1,0 +1,76 @@
+<include file="Public/header"/>
+<include file="Public/left"/>
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>活动状态</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!---->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="__MODULE__/Main/index.html" class="tip-bottom" data-original-title="返回后台首页"><i class="icon-home"></i> 后台首页</a><span>|</span><a href="__CONTROLLER__/registration">活动报名情况</a><span>|</span><a href="__SELF__" class="current"> 活动报名情况</a> </div>
+        <h1>活动报名情况</h1>
+    </div>
+    <style type="text/css">
+        .table th, .table td {
+            text-align: center;
+        }
+        .table td a{
+            color:blue;
+            text-decoration:none;
+        }
+        .mycolor{
+            background-color: #D9EDF7;
+        }
+    </style>
+    <div class="container-fluid" style="overflow-y: auto; overflow-x: hidden; height: 460px;">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: left;" colspan='12'>
+                        <span class="icon"> <i class='icon-file'></i> </span>
+                        <span>报名 管理</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {$kon1}
+                </tr>
+                <tr>
+                    <th>活动名称</th>
+                    <th>活动报名人数</th>
+                    <th>签到人数</th>
+                    <th>支付费用人数</th>
+                    <th>操作</th>
+                </tr>
+
+                <?php $i=0;$j=0;foreach($data as $k=>$val):?>
+                <tr>
+                    <td>{$val['activename']}</td>
+                    <td><?php $count=count(explode(',',$val['enterid']))-1; echo $count;?></td>
+                    <td>{$math1[$i++][0]['count(*)']}</td>
+                    <td>{$math2[$j++][0]['count(*)']}</td>
+                    <td><a href="userData.html?id={$val['id']}">详情</a>
+                        <?php
+echo "<a href='../Activity/msgOut?id=".$val['id']."'>导出&nbsp;</a>";
+                        ?>
+                    </td>
+
+                </tr>
+                <?php endforeach;?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/jS/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jS/jquery-2.1.1.min.js"></script>
+<ul class="typeahead dropdown-menu"></ul>
+</body>
+</html>

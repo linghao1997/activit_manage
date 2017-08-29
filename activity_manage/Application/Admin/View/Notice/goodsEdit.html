@@ -1,0 +1,102 @@
+<include file="Public/header"/>
+<include file="Public/left"/>
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>后台管理平台</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/jquery.datetimepicker.css"/>
+</head>
+<body>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="__MODULE__/Main/index.html" class="tip-bottom" data-original-title="返回后台首页"><i class="icon-home"></i> 后台首页</a><span>|</span><a href="__CONTROLLER__/capital"> &nbsp;经费 管理</a><span>|</span><a href="__SELF__" class="current"> 经费管理</a> </div>
+        <h1>修改 经费</h1>
+    </div>
+    <style type="text/css">
+        /*        span3 {font-size: 18px;color: #666666; display : inline}
+                span2 {font-size: 15px;color: red; display : inline}*/
+        .table th, .table td {
+            text-align: left;
+        }
+    </style>
+    <div class="container-fluid" style="overflow-y: auto; overflow-x: hidden; height: 400px;">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" style="border: 0">
+                <thead>
+                <th colspan="2">
+                    <span class="icon"> <i class="icon-pencil"></i> </span>
+                    <span>修改 经费</span>
+                </th>
+                </thead>
+                <tbody>
+                <form class="form-horizontal" role="form" action="__SELF__" method="post" ENCTYPE="multipart/form-data">
+                    <?php foreach($data as $k=>$v):?>
+                    <tr>
+                        <td style="width: 15%;">物品名称:</td>
+                        <td><input class="form-control col-md-9" type="text" name="goodsname" id="s2" value="{$v['goodsname']}"></input>
+                            <span2 id='sp2'></span2></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;">物品数量:</td>
+                        <td><input class="form-control col-md-9" type="text" name="goodsnum" id="s3" value="{$v['goodsnum']}"onkeypress="keyPress()"></input><span2 id='sp3'></span2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 15%;">物品单价：</td>
+                        <td><input class="form-control col-md-9" type="text" id="s4" name="goodsprice" value="{$v['goodsprice']}"  onkeypress="keyPress()"></input>
+                            <span2 id='sp4'></span2>
+                        </td>
+                    </tr>
+                    <td colspan="2"><button type="submit" class="btn btn-warning ajax-post"  id="submit1
+                           ">确定</button>
+                        <br>
+                        <br>
+                    </td>
+                    </tr>
+                    <?php endforeach;?>
+                </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--end-main-container-part-->
+<script src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<script src="__PUBLIC__/js/Mainjs/jquery.min.js"></script>
+<script src="__PUBLIC__/js/Mainjs/jquery.min.js"></script>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/laydate.dev.js"></script>
+<script>
+    $('.ajax-post').click(function(){
+        event.preventDefault();
+        var s2 = $("#s2").val();
+        var s3 = $("#s3").val();
+        var s4 = $("#s4").val();
+        $.ajax({
+            url: "__SELF__",
+            type: "POST",
+            data:{
+                "goodsname" : s2,
+                "goodsnum":s3,
+                "goodsprice":s4,
+            },
+            dataType: "json",
+            async:true,
+            error: function(){
+                alert('Error loading JSON document');
+            },
+            success: function(data){
+                alert(data.info);
+                //alert(data.id);
+                window.location.href='__CONTROLLER__/detail?id='+data.id;
+            }
+        });
+    })
+</script>
+
+<ul class="typeahead dropdown-menu"></ul>
+</body>
+</html>

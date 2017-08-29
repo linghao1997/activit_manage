@@ -1,0 +1,106 @@
+<include file="Public/header"/>
+<include file="Public/left"/>
+
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>用户签到</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="__MODULE__/Main/index.html" class="tip-bottom" data-original-title="返回后台首页"><i class="icon-home"></i> 后台首页</a><span>|</span><a href="__CONTROLLER__/changeData">用户 签到</a><span>|</span><a href="__SELF__" class="current"> 用户 签到</a> </div>
+        <h1>用户 签到</h1>
+    </div>
+    <style type="text/css">
+        .table th, .table td {
+            text-align: center;
+        }
+        .table td a{
+            color:blue;
+            text-decoration:none;
+        }
+        .mycolor{
+            background-color: #D9EDF7;
+        }
+    </style>
+
+    <div class="container-fluid" style="overflow-y: auto; overflow-x: hidden; height: 460px;">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: left;" colspan='12'>
+                        <span class="icon"> <i class='icon-file'></i> </span>
+                        <span> {$data[0]['activename']}</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {$kon1}
+                </tr>
+                <tr>
+                    <th>用户名</th>
+                    <th>是否签到</th>
+                    <th>是否支付费用</th>
+                    <th>签到时间</th>
+                    <th>签到</th>
+                    <th>支付</th>
+                </tr>
+                <?php foreach($data as $k=>$v):?>
+                <tr>
+
+                    <td>{$v['username']}</td>
+                    <td>
+                        <?php
+                                if($v['userstatus']== 1){
+                                    echo "<span> 未签到</span>";
+                        }elseif($v['userstatus']== 0){
+                        echo "<span> 已签到</span>";
+                        }
+                        ?>
+
+                    </td>
+                    <td>
+                        <?php
+                                if($v['moneystatus']== 1){
+                                    echo "<span> 未支付</span>";
+                        }elseif($v['moneystatus']== 0){
+                        echo "<span> 已支付</span>";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        {$v['createtime']}
+                    </td>
+                    <td> <?php
+                                    if($v['userstatus'] == 1 ){
+                                        echo "<a href=\"__CONTROLLER__/qiandao?id=$id&uid=".$v['id']."\"  onclick=\"return confirm('是否签到')\">签到</a>";
+                        }else{
+                        echo "<a href=\"__CONTROLLER__/cancelqiandao?id=$id&uid=".$v['id']."\"  onclick=\"return confirm('是否取消签到')\">取消签到</a>";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                                    if($v['moneystatus'] == 1 ){
+                                        echo "<a href=\"__CONTROLLER__/zhifu?id=$id&uid=".$v['id']."\"  onclick=\"return confirm('是否支付')\">支付</a>";
+                        }else{
+                        echo "<a href=\"__CONTROLLER__/cancelzhifu?id=$id&uid=".$v['id']."\"  onclick=\"return confirm('是否取消支付')\">取消支付</a>";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/jS/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jS/jquery-2.1.1.min.js"></script>
+<ul class="typeahead dropdown-menu"></ul>
+</body>
+</html>

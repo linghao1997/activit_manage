@@ -1,0 +1,83 @@
+<include file="Public/header"/>
+<include file="Public/left"/>
+
+<!---->
+<!DOCTYPE html>
+<!-- saved from url=(0046)/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>活动状态</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<!---->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb"> <a href="__MODULE__/Main/index.html" class="tip-bottom" data-original-title="返回后台首页"><i class="icon-home"></i> 后台首页</a><span>|</span><a href="__CONTROLLER__/sumconst">经费 管理</a><span>|</span><a href="__SELF__" class="current">费用 明细</a> </div>
+        <h1>经费管理</h1>
+    </div>
+    <!--End-breadcrumbs-->
+    <style type="text/css">
+    /*    span3 {font-size: 15px;color: #666666; display : inline}
+        span4 {font-size: 20px;color: red; display : inline}*/
+        .table th, .table td {
+            text-align: center;
+        }
+        .table td a{
+            color:blue;
+            text-decoration:none;
+        }
+        .mycolor{
+            background-color: #D9EDF7;
+        }
+    </style>
+    <!---->
+    <div class="container-fluid" style="overflow-y: auto; overflow-x: hidden; height: 460px;">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: left;" colspan='12'>
+                        <span class="icon"> <i class='icon-file'></i> </span>
+                        <span>{$data[0]['activename']}</span>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {$kon1}
+                </tr>
+                <tr>
+                    <th>物品名称</th>
+                    <th>物品数量</th>
+                    <th>物品单价</th>
+                    <th>总价</th>
+                    <th>操作</th>
+
+                </tr>
+                <?php foreach($data as $k=>$v):?>
+                <tr>
+                    <td>{$v['goodsname']}</td>
+                    <td>{$v['goodsnum']}</td>
+                    <td>{$v['goodsprice']}</td>
+                    <td><?php $sum = $v['goodsnum']*$v['goodsprice']; echo $sum;?></td>
+                    <td> <?php
+                            echo "<a onclick=\"return confirm('是否确认删除')\" href='__CONTROLLER__/del?id=".$v['id']."'>删 除</a>";echo '&nbsp;';
+
+        echo "<a href='./goodsEdit?id=".$v['id']."'>修 改</a>";
+
+                        ?></td>
+                </tr>
+                <?php endforeach;?>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/jS/jq.js"></script>
+<script type="text/javascript" src="__PUBLIC__/jS/jquery-2.1.1.min.js"></script>
+<ul class="typeahead dropdown-menu"></ul>
+</body>
+</html>

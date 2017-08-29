@@ -1,0 +1,12 @@
+正确的网站 http://localhost/Public/Images/buttom_left.gif
+__MODULE__=>http://localhost/index.php/Admin/Images/left_top_right.gif
+__ROOT__=>http://localhost/Images/left_top_right.gif
+__APP__=>http://localhost/index.php/Images/left_top_right.gif
+__ACTION__ =>http://localhost/index.php/Admin/Main/main/Images/left_top_right.gif
+__SELF__=>http://localhost/index.php/Admin/Main/main/Images/left_top_right.gif
+__INFO__=>  http://localhost/index.php/Admin/Main/__INFO__/Images/left_top_right.gif
+__EXT__=>http://localhost/index.php/Admin/Main/__EXT__/Images/left_top_right.gif
+
+
+__PUBLIC__=>http://localhost/Public/Images/left_top_right.gif
+
