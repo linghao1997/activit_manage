@@ -10,3 +10,8 @@ php7 开启curl失败问题?
 		$("ul.nav li").find("a").eq(6).append("<image src =./templates/default/images/sj1.png >");
 		$("ul.nav li").find("a").eq(9).append("<image src =./templates/default/images/sj1.png >");
 		$("ul.nav li").find("a").eq(10).append("<image src =./templates/default/images/sj1.png >");
+5.laravel
+buider(中间操作流)
+	创建一个属性，并不断改变它，最后用一个操作来触发数据库操作
+	这里最难的地方在于后面的两个 foreign_key 和 local_key 的设置，大家可以就此记住：在 User 类中，无论 hasOne 谁，第二个参数都是 `user_id`，
+	第三个参数一般都是 `id`。由于前面的 `find(10)` 已经锁定了 id = 10，所以这段函数对应的 SQL 为： `select * from account where user_id=10`。
