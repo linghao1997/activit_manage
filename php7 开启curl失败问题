@@ -3,3 +3,10 @@ php7 开启curl失败问题?
 1.新建环境变量 phpext 加入php扩展绝对路径
 2.新建环境变量 PHPRC 加入php绝对路径
 3 将php绝对路径加入 Path中
+4.在指定html中某元素后添加元素
+		
+		$("ul.nav li").find("a").eq(1).append("<image src =./templates/default/images/sj1.png >");
+		$("ul.nav li").find("a").eq(2).append("<image src =./templates/default/images/sj1.png >");
+		$("ul.nav li").find("a").eq(6).append("<image src =./templates/default/images/sj1.png >");
+		$("ul.nav li").find("a").eq(9).append("<image src =./templates/default/images/sj1.png >");
+		$("ul.nav li").find("a").eq(10).append("<image src =./templates/default/images/sj1.png >");
